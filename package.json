@@ -1,0 +1,50 @@
+{
+  "name": "rc-toolkit",
+  "version": "1.0.0",
+  "description": "Remote-Control Toolkit",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "ci": "npm run test",
+    "clean": "./scripts/clean.sh",
+    "dev": "tsc -w",
+    "lint": "eslint . --ext .ts",
+    "semantic-release": "tsc && semantic-release",
+    "test": "jest --verbose",
+    "test-watch": "jest --watch",
+    "run:server": "DEBUG=TCP:SERVER node -r ts-node/register server/index.ts",
+    "run:client": "DEBUG=TCP:CLIENT node -r ts-node/register client/index.ts",
+    "run:compile": "pbjs -t json-module -w commonjs -o ./proto/proto.js ./proto/*.proto"
+  },
+  "dependencies": {
+    "debug": "^4.1.1",
+    "protobufjs": "^6.8.8"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.4",
+    "@types/jest": "^24.0.13",
+    "@types/node": "^12.0.2",
+    "eslint": "^6.4.0",
+    "eslint-config-egg": "^7.5.1",
+    "eslint-plugin-jest": "^22.17.0",
+    "jest": "^24.8.0",
+    "mz-modules": "^2.1.0",
+    "rimraf": "^3.0.0",
+    "semantic-release": "^15.13.18",
+    "ts-jest": "^24.0.2",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.4.5"
+  },
+  "release": {
+    "branche": "master",
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      "@semantic-release/github"
+    ]
+  },
+  "author": "Thonatos.Yang",
+  "license": "MIT",
+  "repository": "git@github.com:thonatos/typescript-boilerplate.git"
+}

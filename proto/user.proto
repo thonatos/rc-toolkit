@@ -1,0 +1,7 @@
+package implementsio.user;
+syntax = "proto3";
+
+message User {
+    int32 age = 1;
+    string name = 2;
+}

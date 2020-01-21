@@ -1,0 +1,7 @@
+package implementsio.msg;
+syntax = "proto3";
+
+message Msg {
+    int32 code = 1;
+    string content = 2;
+}

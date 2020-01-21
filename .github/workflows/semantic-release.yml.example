@@ -1,0 +1,29 @@
+name: Semantic Release
+on:
+  push:
+    branches:
+    - master
+jobs:
+
+  release:
+    runs-on: ubuntu-latest
+    container:
+      image: thonatos/github-actions-nodejs
+    steps:
+    - uses: actions/checkout@master
+    - name: Install Dependencies
+      run: |
+        npm install
+    - name: Continuous integration
+      run: npm run ci
+    - name: Code Coverage
+      run: |
+        npm install codecov -g
+        codecov
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+    - name: Release NPN Package
+      run: npm run semantic-release
+      env:
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
