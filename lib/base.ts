@@ -1,4 +1,5 @@
 import net from 'net';
+import consola, { Consola } from 'consola';
 import debug, { Debugger } from 'debug';
 import { encode, decode } from './proto';
 
@@ -8,6 +9,7 @@ import {
 
 export default class Base {
   options: IOptions;
+  consola: Consola;
   debugger: Debugger;
   instance: any;
   server: net.Server | undefined;
@@ -16,11 +18,8 @@ export default class Base {
   constructor(options) {
     const { name } = options;
     this.options = options;
+    this.consola = consola;
     this.debugger = debug(name);
-  }
-
-  log(...args) {
-    console.log(args);
   }
 
   pack(handler, payload) {
